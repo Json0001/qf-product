@@ -49,6 +49,7 @@
 // 5.校验不通过，跳转到登陆页
 
 import { getLoginLog, login } from "./../../api/index"; //引入api文件
+import {mapMutations} from "vuex"
 export default {
   //用户名框
   data() {
@@ -86,6 +87,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["SET_USERINFO"]),
     submitForm(formName) {
       //加载效果
       const loading = this.$loading({
@@ -106,6 +108,9 @@ export default {
               if (res.data.state) {
                 // 校验token，放入本地存储
                 localStorage.setItem("qf-token", res.data.token);
+                //把用户信息放入本地存储
+                localStorage.setItem("qf-userInfo", JSON.stringify(res.data.userInfo));
+                this.SET_USERINFO(res.data.userInfo) //传参更改state
                 loading.close(); //关闭加载效果
                 this.$message({   //登录成功弹窗
                   message: "登录成功，正在跳转",

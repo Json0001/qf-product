@@ -33,7 +33,7 @@ axios.interceptors.request.use(
 // 响应拦截  请求可以成功，但是返回数据被拦截 为了校验token
 axios.interceptors.response.use(config=>{
     //和请求拦截器一样，需要return
-    console.log(config);
+    // console.log(config);
     if(config.data.code==="1004"){  //在当前页面code 1004代表校验失败，携带的token有问题
         ElementUI.Message.error("用户信息失效")
         router.push("/login")

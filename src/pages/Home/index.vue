@@ -72,8 +72,8 @@
                   ></el-avatar>
                 </div>
 <div class="demo-right">
- 欢迎您：<b></b>
-                <a href="">退出</a>
+ 欢迎您：<b class="nickname">{{userInfo.nickname}}</b>
+                <a href="" @click="quit">退出</a>
 </div>
                
               </div>
@@ -88,6 +88,7 @@
 </template>
 <script>
 import { getLoginLog } from "@/api";
+import {mapState} from "vuex"
 //侧边栏操作
 export default {
   data() {
@@ -96,11 +97,20 @@ export default {
     };
   },
   mounted() {
+    console.log(this.userInfo.nickname);
     getLoginLog().then(res => {
       console.log(res);
     });
   },
+  computed: {
+    ...mapState(["userInfo"]),
+  },
   methods: {
+    quit(){
+      localStorage.removeItem("qf-token")
+      localStorage.removeItem("qf-userInfo")
+      this.router.push("/login")
+    },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -149,7 +159,11 @@ export default {
   text-align: center;
   line-height: 200px;
 }
-
+.nickname{
+  font-weight: 900;
+  font-family: "宋体";
+  margin-right: 8px;
+}
 .el-main {
   background-color: #e9eef3;
   color: black;
