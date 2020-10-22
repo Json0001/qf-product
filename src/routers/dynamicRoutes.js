@@ -1,4 +1,4 @@
-import Hone from "../pages/Home"
+import Home from "../pages/Home"
 let dynamicRoutes = [
     {
         path: "/",
@@ -14,3 +14,4 @@ let dynamicRoutes = [
         component:()=>import(/* webpackChunkName: "stu" */ "../pages/page404")
       }
 ]
+export default dynamicRoutes

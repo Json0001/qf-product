@@ -16,7 +16,7 @@ const allRoutes = [
     component: Welcome,
     meta: {
       name: '管理首页',
-      icon: 'iconfont icon-shouye',
+      icon: 'iconfont icon-home',
         fullPath:"/Welcome"   //可以不写，后面有插件
     }
   },
@@ -83,7 +83,7 @@ const allRoutes = [
     component: Statistics,
     meta: {
       name: '数据统计',
-      icon: 'iconfont icon-shuju1'
+      icon: 'iconfont icon-shujutongji'
     }
   },
   {

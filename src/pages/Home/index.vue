@@ -5,43 +5,12 @@
       <el-aside width="">
         <!-- 侧边栏 -->
         <el-menu
-        default-active="1-4-1"
+        :default-active="$route.path"
                  class="el-menu-vertical-demo"
                  :router="true"
                  :collapse="isCollapse"
         >
-          <el-menu-item index="1" >
-            <i class="iconfont icon-shujutongji"></i>
-            <span slot="title">管理首页</span>
-          </el-menu-item>
-
-            <el-submenu index="1">
-            <template slot="title">
-              <i class="iconfont icon-kaoqin"></i>
-              <span slot="title">导航一</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-
-          <el-menu-item index="5">
-            <i class="iconfont icon-wode"></i>
-            <span slot="title">用户管理</span>
-          </el-menu-item>
-          <el-menu-item index="6">
-            <i class="iconfont icon-kaoqin"></i>
-            <span slot="title">考勤管理</span>
-          </el-menu-item>
-          <el-menu-item index="7">
-            <i class="iconfont icon-wode"></i>
-            <span slot="title">数据统计</span>
-          </el-menu-item>
-          <el-menu-item index="/stu1">
-            <i class="iconfont icon-home"></i>
-            <span slot="title">我的中心</span>
-          </el-menu-item>
+          <qf-sub-menu :sideMenu='menuList'></qf-sub-menu>
         </el-menu>
       </el-aside>
       <!-- 头部 -->
@@ -82,6 +51,16 @@
         </el-header>
         <!-- 主体 -->
         <el-main>
+       <el-breadcrumb separator-class="el-icon-arrow-right">
+  <el-breadcrumb-item :to="{ path: '/Welcome' }">首页</el-breadcrumb-item>
+  
+            <el-breadcrumb-item  v-for="item in crubms"
+                                :to="{ path:item.path}" 
+                                :key="item.path">
+              {{item.meta.name}}
+            </el-breadcrumb-item>
+        
+</el-breadcrumb>
        <router-view></router-view>
         </el-main>
       </el-container>
@@ -91,7 +70,7 @@
 
 <script>
 import { getLoginLog } from "@/api";
-import {mapState} from "vuex"
+import {mapMutations, mapState} from "vuex"
 //侧边栏操作
 export default {
   data() {
@@ -100,15 +79,17 @@ export default {
     };
   },
   mounted() {
-    console.log(this.userInfo.nickname);
+    // console.log(this.userInfo.nickname);
     getLoginLog().then(res => {
       console.log(res);
-    });
+    })
+    //
   },
   computed: {
-    ...mapState(["userInfo"]),
+    ...mapState(["userInfo","menuList","crubms"]),
   },
   methods: {
+    
     quit(){
       localStorage.removeItem("qf-token")
       localStorage.removeItem("qf-userInfo")
@@ -167,10 +148,7 @@ export default {
   color: rgb(50, 179, 140);
 }
 .el-menu-item{
-  color: rgb(50, 179, 140);;
-}
-.el-submenu__title{
-  color: rgb(50, 179, 140)!important;
+  color: rgb(50, 179, 140);
 }
 .nickname{
   font-weight: 900;

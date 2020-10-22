@@ -5,7 +5,7 @@ const recursionRoutes = (allRoutes,menuList) =>{
     allRoutes.forEach(item=>{
         menuList.forEach(v=>{
           if(item.meta.name === v.name)  {
-              if(v.children){
+              if(v.children&&v.children.length>0){
                 item.children = recursionRoutes(item.children,v.children)
               }
             userRoutes.push(item)

@@ -7,7 +7,11 @@ import Stu1 from "./pages/Home/stu1";
 import allRoutes from "./allRoutes/index"
 
 Vue.use(Router);
-
+//解决路由导航到统一路径重复报错的问题
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 export default new Router({
   routes: [
     {

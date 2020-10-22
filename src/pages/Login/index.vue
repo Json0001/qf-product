@@ -117,7 +117,7 @@ export default {
                   message: "登录成功，正在跳转",
                   type: "success"
                 });
-                this.$router.push("/");
+                this.$router.push("/Welcome");
               } else {
                 loading.close(); //关闭加载效果
                 this.$message.error("用户名或密码错误"); //登录失败弹窗

@@ -34,9 +34,14 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(config=>{
     //和请求拦截器一样，需要return
     // console.log(config);
-    if(config.data.code==="1004"){  //在当前页面code 1004代表校验失败，携带的token有问题
-        ElementUI.Message.error("用户信息失效")
-        router.push("/login")
+    if(config.data.code==="1004" ||config.data.code==="10022" ){  //在当前页面code 1004代表校验失败，携带的token有问题
+        localStorage.removeItem("qf-token")
+        // if(token){
+            ElementUI.Message.error("用户信息失效")
+            router.push("/login")
+
+            window.location.reload()
+        // }
     }
     return config
   })
