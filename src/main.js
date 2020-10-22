@@ -7,14 +7,16 @@ import 'element-ui/lib/theme-chalk/index.css';
 import "./assets/base.css"
 import "./assets/el-reset.css"
 import axios from "axios"
+import "./icon/iconfont.css"
+import "./util/recursionRoutes"
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 
 //路由守卫（前置钩子），为了防止客户乱填地址，让他都跳转到登陆页面
 router.beforeEach((to, from, next) => {
   //next()  视图加载放行
-  // console.log(to);
-  // console.log(from);
+  console.log(to);
+  console.log(from);
   let token = localStorage.getItem("qf-token")
   if(token){    
     next()
@@ -28,8 +30,6 @@ router.beforeEach((to, from, next) => {
     }
   }
 })
-
-
 
 new Vue({
   router,

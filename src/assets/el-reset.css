@@ -10,3 +10,6 @@
   .el-input__inner{
     color: white;
   }
+  .el-submenu__title{
+    color: rgb(50, 179, 140)!important;
+  }

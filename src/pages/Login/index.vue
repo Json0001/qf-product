@@ -25,11 +25,12 @@
           autocomplete="off"
         ></el-input>
       </el-form-item>
-      <el-form-item label="密码" prop="password">
+      <el-form-item label="密码" prop="password" >
         <el-input
           type="password"
           v-model="loginForm.password"
           autocomplete="off"
+          @keyup.enter.native="submitForm('loginForm')"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -86,19 +87,19 @@ export default {
       }
     };
   },
+
   methods: {
     ...mapMutations(["SET_USERINFO"]),
     submitForm(formName) {
-      //加载效果
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          //加载效果
       const loading = this.$loading({
         lock: true,
         text: "正在加载中",
         spinner: "el-icon-loading",
         background: "rgba(0, 0, 0, 0.7)"
       });
-
-      this.$refs[formName].validate(valid => {
-        if (valid) {
           //代表本地校验通过 后期所有的请求操作都在这里
           // console.log(this.loginForm.username,this.loginForm.password);
           //login()是个方法，传入参数username&password

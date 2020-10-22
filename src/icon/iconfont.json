@@ -1,0 +1,44 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3389406",
+      "name": "数据统计",
+      "font_class": "shujutongji",
+      "unicode": "e64c",
+      "unicode_decimal": 58956
+    },
+    {
+      "icon_id": "5299227",
+      "name": "学员",
+      "font_class": "xueyuan",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "9928551",
+      "name": "考勤",
+      "font_class": "kaoqin",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "10135157",
+      "name": "我 的 (3)",
+      "font_class": "wode",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "14007783",
+      "name": "首页-选中",
+      "font_class": "home",
+      "unicode": "e516",
+      "unicode_decimal": 58646
+    }
+  ]
+}
