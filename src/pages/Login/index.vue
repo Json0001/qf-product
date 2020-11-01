@@ -17,12 +17,13 @@
       label-width="100px"
       class="demo-loginForm"
     >
-      <h1>千锋管理系统</h1>
+      <h1>某某管理系统</h1>
       <el-form-item label="用户名" prop="username">
         <el-input
           type="text"
           v-model="loginForm.username"
           autocomplete="off"
+          ref="input"
         ></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password" >
@@ -87,7 +88,11 @@ export default {
       }
     };
   },
-
+mounted () {
+this.$nextTick(() => {
+this.$refs.input.focus()
+})
+},
   methods: {
     ...mapMutations(["SET_USERINFO"]),
     submitForm(formName) {

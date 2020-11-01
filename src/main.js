@@ -9,12 +9,38 @@ import "./assets/el-reset.css"
 import axios from "axios"
 import "./icon/iconfont.css"
 import "./util/recursionRoutes"
-
+import bus from "./util/bus"
+import has from "./util/has"
+import subMenu from "qf-sub-menu"
+Vue.prototype.$has = has;
+Vue.prototype.$bus = bus
 //插件渲染，里面记得印射mapState的menuList
 import qfSubMenu from "qf-sub-menu"
 Vue.use(qfSubMenu)
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
+
+Vue.use(ElementUI)
+Vue.use(subMenu)
+
+// Vue.config.productionTip = false
+//定义全局自定义指令 判断是否具备相应按钮权限
+Vue.directive("haspermission", {
+
+  bind(el, binding, VNode) {
+    // console.log(el)
+    let buttons = localStorage.getItem("wf-permission-buttons")
+    if (!has(buttons, binding.value)) {
+      //禁用按钮
+      // console.log(el.className)
+      //先储存class类名 在这基础上加上is-disabled禁用按钮
+      let className = el.className;
+      el.className = className + " " + "is-disabled"
+      el.disabled = true
+      // console.log(el)
+    }
+  }
+})
 
 //路由守卫（前置钩子），为了防止客户乱填地址，让他都跳转到登陆页面
 router.beforeEach((to, from, next) => {

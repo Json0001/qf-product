@@ -9,14 +9,23 @@ import dynamicRoutes from "./routers/dynamicRoutes"
 Vue.use(Vuex);
 
 let userInfo = JSON.parse(localStorage.getItem("qf-userInfo"))
+let permissionButtons = JSON.parse(localStorage.getItem('wf-permission-buttons')) || {};
 //页面刷新 代码重新执行，vuex中的state就变成空对象了，要从本地中获取
 export default new Vuex.Store({
   state: {
     userInfo:userInfo || "{}",
     menuList:[],   //这个是对比后侧边栏的路由配置
-    crubms: []
+    crubms: [],
+    permissionButtons,
+    sideMenu: [],
   },
   mutations: {
+    CLEAR_SIDEMENU(state) {
+      state.sideMenu = []
+    },
+    SET_PERMISSION_BUTTONS(state, payload) {
+      state.permissionButtons = payload
+    },
     SET_USERINFO(state,payload){
       state.userInfo = payload
     },

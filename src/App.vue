@@ -7,8 +7,18 @@
 
 <script>
 export default {
+  data () {
+    return {
+      input: ''
+    }
+  },
+  methods: {
+    getD () {
+      this.$store.dispatch('FETCH_MENULIST')
+    }
+  },
   mounted () {
-    // this.$store.dispatch("FETCH_MENULIST")
+
   }
 }
 </script>

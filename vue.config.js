@@ -1,4 +1,5 @@
 module.exports = {
+    outputDir: process.env.outputDir ? process.env.outputDir : 'dist',
   lintOnSave: false,
   devServer: {
       proxy:{

@@ -29,7 +29,7 @@
             ></el-button>
           </div>
 
-          <div><span style="font-size:20px">千锋管理系统</span></div>
+          <div><span style="font-size:20px">某某管理系统</span></div>
 
           <el-row class="demo-avatar">
             <el-col>
